@@ -1,0 +1,20 @@
+@use "colors";
+@use "reset";
+@use "breakpoints";
+
+@import url("https://font.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+body {
+  overflow: auto;
+  min-height: 100vh;
+  background: colors.$grayscale-800;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: colors.$grayscale-0;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}

@@ -1,0 +1,27 @@
+@use "colors";
+@use "breakpoints";
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+
+  button {
+    font-size: 20px;
+    cursor: pointer;
+
+    .orange {
+      color: colors.$orange-500;
+    }
+
+    @media (min-width: breakpoints.$tablet) {
+      font-size: 28px;
+    }
+  }
+}

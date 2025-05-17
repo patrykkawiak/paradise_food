@@ -1,0 +1,72 @@
+<div class="wrapper">
+  @if(!restaurants()) {
+  <div class="container">
+    <div class="proposal">
+      @let data = questionData();
+      <h3>{{ data.title }}</h3>
+
+      <div
+        class="image"
+        style="background-image: url('/img/questions/{{ data.image }}.png')"
+      ></div>
+
+      <div class="buttons">
+        @for (option of data.options; track option.value) {
+        <app-main-button (click)="approve(option.value)">
+          {{ option.name }}
+        </app-main-button>
+        }
+      </div>
+    </div>
+  </div>
+  } @else {
+  <div class="result">
+    <div class="heading">
+      <p>Wybraliśmy dla ciebie propozycje restauracji</p>
+      <p class="gray">powinno ci smakować..</p>
+    </div>
+
+    <div class="grid">
+      @for (restaurant of restaurants(); track restaurant.name) {
+
+      <div class="restaurant">
+        <div
+          class="image"
+          style="background-image: url('/img/restaurant.png')"
+        ></div>
+
+        <div class="details">
+          <h1>{{ restaurant.name }}</h1>
+
+          <p class="gray">
+            Kuchnia:
+            {{ TranslateHelper.getKitchenTranslations(restaurant.kitchen) }}
+          </p>
+
+          <p class="gray">
+            Śr. czas ocz.:
+            {{ TranslateHelper.getDurationTranslations(restaurant.duration) }}
+          </p>
+
+          <p class="gray">
+            Średnia ocen:
+            {{ TranslateHelper.getRateTranslations(restaurant.rates) }}
+          </p>
+
+          <p class="gray">
+            Ceny:
+            {{ TranslateHelper.getPriceTranslations(restaurant.prices) }}
+          </p>
+        </div>
+        <app-main-button> Sprawdź ofertę </app-main-button>
+      </div>
+
+      } @empty {
+      <p class="orange">Brak wyników, poszukaj jeszcze raz</p>
+
+      <app-main-button (click)="reset()"> Przeładuj </app-main-button>
+      }
+    </div>
+  </div>
+  }
+</div>
